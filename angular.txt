@@ -1,0 +1,136 @@
+- ng new ProjectTest
+- cd ProjectTest
+- npm start
+- ctrl C: stop
+- ng generate component [Home]
+
+
+-component.ts: code ts( biến,..) -> .html: {{ten bien}}
+
+-if in .html : <span *ngIf="age <18" class=...>....</span>
+- for in .html: <div #ngFor=" let name of Names">
+					<li>{{name}}</li>
+				</div>
+-ngModel: gắn giá trị nhập vào từ client vào 1 biến trong ts: <input [(ngModel)] = "name"
+
+- ng-template with if else: <ng-template #[NameCondition] ......
+							<span *ngIf = "age <18; then [NameCondition1] else [NameCondition2] .....
+
+.c
+#i
+- even: 
+	+ (click) = "myFunction()"
+	+ (dbclick) = "myFunction()"
+	+ (submit) = "myFunction()"
+	+ (blur) = "myFunction()"
+	+ (focus) = "myFunction()"
+	+ (scroll) = "myFunction()"
+	+ (cut) = "myFunction()"
+	+ (copy) = "myFunction()"
+	+ (paste) = "myFunction()"
+	+ (kyeup) = "myFunction()"
+	+ (keypress) = "myFunction()"
+	+ (keydown) = "myFunction()"
+- pipes: xây dựng sẵn, có thể tự tạo ra:
+	+ lowercase	{{name | lowercase}}
+	+ uppercase
+	+ date
+	+ currency
+	+ json
+	+ percent
+	+ number
+	+ slice
+	
+https://www.codementor.io/@julieisip/learn-rest-api-using-express-js-and-mysql-db-ldflyx8g2
+https://www.tutorialsteacher.com/nodejs/access-sql-server-in-nodejs
+- Routing:
+	+ Trong app.component.htm k khai báo selector nữa mà thay vào đó là <router-outlet></router-outlet>: nơi mk cái [routerLink] sẽ hiển thị
+	+ Trong app-routing.modules.ts khai báo các object path: {path:'', component: HomeComponent},.....
+	+ Muốn use: [routerLink ]="['/Home']" || lỗi thì use:  routerLink="/Employee"
+	+ Muốn xử lý điều hướng trong component.ts: khởi tạo trong constructor: private router: Router => this.router.navigate(['AddCustomer'])
+	+ Muốn lấy tham số truyền vào:
+		* Trong component.ts: khởi tạo trong constructor: private route: ActivatedRoute
+- Service: Những hàm, biến dung chung sẽ tách vào 1 component service dùng chung
+	+: ng generate service Services/Name(common)
+	+ viết code dug chung trong đó
+	+ Use: khai báo trong constructor: constructor(private common: CommonService) => this.common.
+	
+- Fake Json Server:
+	+ cmd: npm install -g json-server
+	+ cd project -> create db.json
+	+ project:  cmd: json-server --watch db.json
+- Http-Get method:
+	+ app.module.ts: import { HttpClientModule } from '@angular/common/http';     ....HttpClientModule
+	+ create new service
+	+ in new service.ts: - add header: 
+										const httpOptions = {
+										  headers: new HttpHeaders({
+											'Content-Type':  'application/json',
+											Authorization: 'my-auth-token'
+										  })
+										};
+						  - handleError:
+										private handleError(error: HttpErrorResponse) {
+										  if (error.error instanceof ErrorEvent) {
+											// A client-side or network error occurred. Handle it accordingly.
+											console.error('An error occurred:', error.error.message);
+										  } else {
+											// The backend returned an unsuccessful response code.
+											// The response body may contain clues as to what went wrong.
+											console.error(
+											  `Backend returned code ${error.status}, ` +
+											  `body was: ${error.error}`);
+										  }
+										  // Return an observable with a user-facing error message.
+										  return throwError(
+											'Something bad happened; please try again later.');
+										}
+						  - REST_API_SERVER: private REST_API_SERVER = 'http://localhost:3000/';
+- Directive: ng g d Directives/name
+	+ Component Directives: <router-outlet></router-outlet>
+	+ Structural Directive: ngIf, ngFor,...
+	+ Attribute Directive:
+-badge
+----------------------------------angular material------------------------
+- cmd: project: npm install --save @angular/material 
+- package.json: sẽ có material
+- app.model.ts: import { MatSliderModule } from '@angular/material/slider';
+				import { MatToolbarModule } from '@angular/material/toolbar';
+				import { MatIconModule } from '@angular/material/icon';
+				import { MatSidenavModule } from '@angular/material/sidenav';
+				import { MatListModule } from '@angular/material/list';
+				import { MatButtonModule } from '@angular/material/button';
+				import { MatBadgeModule } from '@angular/material/badge';
+				import { MatInputModule } from '@angular/material/input';
+--------------------------file json fake-------------------
+- chữ cái đầu tiên k được viết hoa, chỉ viết hoa chữ cái đầu tiên của các từ từ t2->
+- tên giống vk interface
+---------------------------BehaviorSubject: chia sẻ thông tin giữa các component khác nhau----------------------
+- service:	+ khai baos bien: public totalCustomer$ = new BehaviorSubject<number>(0);
+			+ Chú ý:  biến totalCustomer$ chỉ gán giá trị bằng cách .next(gtri cần truyền) chứ không +-*/ đk nên muốn tính toán phải sử dụng thêm 1 biến khác để tính toán rồi gán lại
+			+ 	
+				public setTotalCustomer(total: number){
+				this.totalCustomer$.next(total);
+				console.log("totalCustomer$: " + this.totalCustomer$);
+				}
+- trong component.ts có giá trị để gán cho biển BehaviorSubject: gọi hàm từ service để truyền tham số vào
+- trong component.ts cần có biến để hiển thị ra component.html: đăng ký để lấy giá trị trả về gán cho biến cần hiển thị
+																this.common.totalCustomer$.subscribe((total)=>{
+																	this.totalCustomer = total;
+																});
+- trong component.html: hiển thị ra: {{..}}
+-----------------------------route: ActivatedRout----------------------------------
+js-tutorials.com/angular
+--------------------get value của html-------------
+- [ngModel]=
+- <... #name      
+------------api----------------------
+		customer?keyword=
+
+		?keyword=a&page=2&pagesize=2
+
+
+-------------------------refre
+https://blog.angular-university.io/angular-material-data-table/: 
+https://stackblitz.com/edit/reusable-confirmation-dialog-angular-material?file=src%2Fapp%2Fapp.component.ts: confirm dialog-angular-material
+https://stackblitz.com/angular/mklbvvrbapq?file=src%2Fapp%2Fdialog-elements-example.ts: launch dialog
