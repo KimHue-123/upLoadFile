@@ -1,0 +1,85 @@
+<mat-dialog-content class="mat-typography">
+    <mat-table #table [dataSource]="dataSource">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="columnCursor"> {{element.id}}
+
+            </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <!-- Bat su kien cho tung o
+        (click)="cellClicked(element)" -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="columnCursor"> {{element.name}} </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="sex">
+            <mat-header-cell *matHeaderCellDef> Sex </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="columnCursor"> {{element.sex}}</mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="address">
+            <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="columnCursor"> {{element.address}} </mat-cell>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="score">
+            <mat-header-cell *matHeaderCellDef> Score </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="columnCursor"> {{element.score}} </mat-cell>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="phoneNumber">
+            <mat-header-cell *matHeaderCellDef> PhoneNumber </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="columnCursor"> {{element.phoneNumber}} </mat-cell>
+        </ng-container>
+        
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"
+                (click) = "clickTest(row)"></mat-row>
+        
+    </mat-table>
+    <!-- <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Sex</th>
+                <th>Address</th>
+                <th>Score</th>
+                <th>PhoneNumber</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container>
+                <tr *ngFor="let customer of listCustomers">
+                    <td>{{customer.id}}</td>
+                    <td>{{customer.name}}</td>
+                    <td>{{customer.sex}}</td>
+                    <td>{{customer.address}}</td>
+                    <td>{{customer.score}}</td>
+                    <td>{{customer.phoneNumber}}</td>
+                </tr>
+            </ng-container>
+
+        </tbody>
+    </table> -->
+    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = getServerData($event)">
+    </mat-paginator>
+</mat-dialog-content>
+
+
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Confirm</button>
+</mat-dialog-actions>

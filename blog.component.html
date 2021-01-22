@@ -1,0 +1,62 @@
+<script src="/path/to/tinymce.min.js"></script>
+
+<!-- <editor
+    apiKey="bujq5p06i9u41k2n9yws0ykhfwktw0xwkvh247nzbsiymj3r"
+    plugins="wordcount"
+    class="csseditor"
+></editor> -->
+<!-- <link href="../../mypage.css"> -->
+<!-- <script src="https://cdn.tiny.cloud/1/bujq5p06i9u41k2n9yws0ykhfwktw0xwkvh247nzbsiymj3r/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
+
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+    });
+</script> -->
+<h1>TinyMCE 5 Angular Demo</h1>
+<!-- <editor
+    [(ngModel)]="text"
+    apiKey="bujq5p06i9u41k2n9yws0ykhfwktw0xwkvh247nzbsiymj3r"
+    [init]="{
+        height: 500,
+        menubar: false,
+        content_css: './mypage.css',
+        body_class:'tinyEditor'
+        }">
+</editor> -->
+<div class="nav-bar"></div>
+<editor 
+    apiKey="bujq5p06i9u41k2n9yws0ykhfwktw0xwkvh247nzbsiymj3r"
+    (onClick) = "showText($event)"
+    (onInit) = "initEditor($event)"
+    [init]="{
+        base_url: '/tinymce', 
+        suffix: '.min',
+        height: 300,
+        content_css: './mypage.css',
+        body_class: 'tinyEditor'
+        
+    }"
+    
+></editor>
+{{customerInfor?.name}}
+<button mat-button color="primary" (click) = "addText()">AddText</button>
+<button mat-button color="primary" (click) = "openListCustomer()">Customer</button>
+
+
+<!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+    selector: 'textarea#default'
+    
+    });
+</script>
+
+<textarea id="default">Hello, World!</textarea> -->
+
