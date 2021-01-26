@@ -1,3 +1,15 @@
+git init
+
+git remote set origin (cái link repo mới tạo)
+//git remote add origin https://github.com/KimHue-123/NewAngular.git
+git add .
+
+git commit -m "init project"
+
+git push -u origin master
+
+
+
 - ng new ProjectTest
 - cd ProjectTest
 - npm start
@@ -129,8 +141,73 @@ js-tutorials.com/angular
 
 		?keyword=a&page=2&pagesize=2
 
+------------------let-variable_name-----------------------
+- Dùng để khai báo biến để tham chiếu đến các template, thường dùng trong ng-template
+- Không nên dùng quá nhiều ng-template
+- Thay vào đó dùng ng-container: 1 thẻ k thể sử dụng nhiều câu điều kiện -> container bao ngoài để áp dụng câu ddkien mk k thay đổi nội dung bên trong
+--------------------------animation
+- file polyfills.ts: mỡ comment: import 'web-animations-js';  // Run `npm install --save web-animations-js`.
+- cmd: npm install web-animations-js --save
+
+---------------------
+-<ng-template [ngIf]="true"> -> nó k dùng *ngIf
+
+
+-----------------------[ngClass]---------------
+- <some-element [ngClass]="{'first': true, 'second': true, 'third': false}">...</some-element>
+
+
+-------------------------------------------Template variables--------------------------------
+- #name | #var="name"
+- tham chiếu ở bất cứ .... trong component
+- *ngIf and *ngFor, or <ng-template> : k truy cập được vào các template variable trong này( bên trog thì truy cập đk)
+- https://angular.io/guide/template-reference-variables
+
+
+---------------------------------------------Binding syntax------------------------------------
+-[( )] = " ": 2 chiều
+- (event) = "": event
+- {{ }}		{{expression}}				
+			= [target]="expression"				[src]="heroImageUrl"     <div [ngClass]="{'special': isSpecial}"></div>
+			= bind-target="expression"
+- https://angular.io/guide/binding-syntax
+
+
+---------------------------------------------RxJS-------------------------------------
+- Thư viện xử lý bất đồng bộ
+	+ Observable
+	+ Operators( map, filter, concat, reduce,…)
+
+
+
+
+
+
+
+
+
+
+
+
 
 -------------------------refre
 https://blog.angular-university.io/angular-material-data-table/: 
 https://stackblitz.com/edit/reusable-confirmation-dialog-angular-material?file=src%2Fapp%2Fapp.component.ts: confirm dialog-angular-material
 https://stackblitz.com/angular/mklbvvrbapq?file=src%2Fapp%2Fdialog-elements-example.ts: launch dialog
+https://www.tiny.cloud/docs/integrations/angular/ tinymce
+https://pro.academind.com/p/angular-the-complete-guide: yt angular
+KimHue-123 kimhue@123
+ 11.0.5
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ nếu mk có chỉnh sửa của mi thì git stash
+
+nếu muốn giữ chỉnh sửa đó thì pull xong git stash pop ra rồi fix conflict
+
+k thì cứ pull về rồi lm tiếp
