@@ -254,3 +254,64 @@ BEGIN
 	ORDER BY CUSTOMER.FullName DESC OFFSET @PageSize * (@PageIndex - 1) ROWS FETCH NEXT @PageSize ROWS ONLY;
 END*/
 
+-----------------angularjs
+CREATE TABLE DATATEST(
+	id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	userName NVARCHAR(50),
+	pass VARCHAR(20),
+	roles NVARCHAR(10),
+	firstName NVARCHAR(20),
+	lastName NVARCHAR(20)
+)
+GO
+CREATE PROCEDURE getListDataTest
+AS
+BEGIN
+	SELECT * FROM DATATEST
+END
+
+EXEC getListDataTest
+
+--xoa
+ALTER PROCEDURE DeleteDataTest (
+	@Id int
+)
+
+AS
+BEGIN 
+	DELETE FROM DATATEST WHERE id = @Id
+
+END
+
+EXEC DeleteDataTest 7
+select * from DATATEST
+
+--get by id
+CREATE PROCEDURE getDataTestById
+	@Id int
+AS
+BEGIN
+	SELECT userName, roles, firstName, lastName FROM DATATEST
+	WHERE Id = @Id
+END
+
+EXEC getDataTestById 2
+--update
+ALTER PROCEDURE UpdateDataTest (
+	@id INT ,
+	@roles NVARCHAR(10),
+	@firstName NVARCHAR(20),
+	@lastName NVARCHAR(20)
+)
+
+AS
+BEGIN 
+	UPDATE  DATATEST
+	SET roles = @roles,
+		firstName = @firstName,
+		lastName = @lastName
+	WHERE id = @id
+
+END
+
+EXEC UpdateDataTest 12, "admin", "Pawan", "Kumar";
